@@ -6,20 +6,21 @@ import br.ufjf.trabalho.aber.control.RetornaInicial;
 import javax.swing.*;
 import java.awt.*;
 
-public class TelaCadastro extends JFrame{
+public class TelaCadastro extends JFrame implements Tela{
 
+    JTextField nome;
+    JTextField email;
     JTextField login;
-    JTextField tfEmail;
     JPasswordField senha;
-
-    JPasswordField tfConfirSenha;
+    JPasswordField confirSenha;
 
     public TelaCadastro(){
 
+        this.nome = new JTextField(50);
+        this.email = new JTextField(50);
         this.login = new JTextField(50);
-        this.tfEmail = new JTextField(50);
         this.senha = new JPasswordField(50);
-        this.tfConfirSenha = new JPasswordField(50);
+        this.confirSenha = new JPasswordField(50);
         this.setLayout(new BorderLayout());
         this.add(painelCaixaTexto(), BorderLayout.CENTER);
         this.add(painelBotoes(), BorderLayout.SOUTH);
@@ -33,13 +34,15 @@ public class TelaCadastro extends JFrame{
         JPanel caixaTexto = new JPanel();
         caixaTexto.setLayout(new GridLayout(0, 2));
         caixaTexto.add(new JLabel("Nome:"));
-        caixaTexto.add(this.login);
+        caixaTexto.add(this.nome);
         caixaTexto.add(new JLabel("Email:"));
-        caixaTexto.add(this.tfEmail);
+        caixaTexto.add(this.email);
+        caixaTexto.add(new JLabel("Nome de Usuário:"));
+        caixaTexto.add(this.login);
         caixaTexto.add(new JLabel("Senha:"));
         caixaTexto.add(this.senha);
         caixaTexto.add(new JLabel("Confirmar senha:"));
-        caixaTexto.add(this.tfConfirSenha);
+        caixaTexto.add(this.confirSenha);
         return caixaTexto;
     }
 
@@ -51,8 +54,7 @@ public class TelaCadastro extends JFrame{
         btConfirmar.addActionListener(new CadastrarLogin(login, senha));
         botoes.add(btConfirmar);
         JButton btCancelar = new JButton("Cancelar");
-        btCancelar.addActionListener(new RetornaInicial());
-        this.setVisible(false);
+        btCancelar.addActionListener(new RetornaInicial(this));
         botoes.add(btCancelar);
         return botoes;
     }

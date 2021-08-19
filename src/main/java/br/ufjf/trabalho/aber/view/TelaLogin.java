@@ -1,9 +1,11 @@
 package br.ufjf.trabalho.aber.view;
 
+import br.ufjf.trabalho.aber.control.RetornaInicial;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class TelaLogin extends JFrame {
+public class TelaLogin extends JFrame implements Tela{
 
     JTextField tfNomeUsuario;
     JPasswordField tfSenha;
@@ -39,7 +41,7 @@ public class TelaLogin extends JFrame {
         //btLogin.addActionListener());
         botoes.add(btConfirmar);
         JButton btCancelar = new JButton("Cancelar");
-        //btLogin.addActionListener(new TelaOpcao());
+        btCancelar.addActionListener(new RetornaInicial(this));
         botoes.add(btCancelar);
         return botoes;
     }

@@ -1,4 +1,4 @@
-package br.ufjf.trabalho.aber.control;
+package br.ufjf.trabalho.aber.model;
 
 import java.util.Date;
 
