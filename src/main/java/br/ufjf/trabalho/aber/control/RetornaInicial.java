@@ -1,9 +1,7 @@
 package br.ufjf.trabalho.aber.control;
 
 import br.ufjf.trabalho.aber.view.Tela;
-import br.ufjf.trabalho.aber.view.TelaCadastro;
 import br.ufjf.trabalho.aber.view.TelaInicial;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

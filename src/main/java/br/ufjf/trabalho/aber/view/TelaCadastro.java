@@ -1,10 +1,12 @@
 package br.ufjf.trabalho.aber.view;
 
 import br.ufjf.trabalho.aber.control.CadastrarLogin;
+import br.ufjf.trabalho.aber.control.OptionLogin;
 import br.ufjf.trabalho.aber.control.RetornaInicial;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class TelaCadastro extends JFrame implements Tela{
 
@@ -24,9 +26,49 @@ public class TelaCadastro extends JFrame implements Tela{
         this.setLayout(new BorderLayout());
         this.add(painelCaixaTexto(), BorderLayout.CENTER);
         this.add(painelBotoes(), BorderLayout.SOUTH);
-        this.setSize(300, 150);
+        this.setSize(350, 250);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public JTextField getNome() {
+        return nome;
+    }
+
+    public void setNome(JTextField nome) {
+        this.nome = nome;
+    }
+
+    public JTextField getEmail() {
+        return email;
+    }
+
+    public void setEmail(JTextField email) {
+        this.email = email;
+    }
+
+    public JTextField getLogin() {
+        return login;
+    }
+
+    public void setLogin(JTextField login) {
+        this.login = login;
+    }
+
+    public JPasswordField getSenha() {
+        return senha;
+    }
+
+    public void setSenha(JPasswordField senha) {
+        this.senha = senha;
+    }
+
+    public JPasswordField getConfirSenha() {
+        return confirSenha;
+    }
+
+    public void setConfirSenha(JPasswordField confirSenha) {
+        this.confirSenha = confirSenha;
     }
 
     private JPanel painelCaixaTexto(){
@@ -49,13 +91,16 @@ public class TelaCadastro extends JFrame implements Tela{
     private JPanel painelBotoes(){
 
         JPanel botoes = new JPanel();
-        botoes.setLayout(new GridLayout(0, 2));
+        botoes.setLayout(new GridLayout(0, 3));
         JButton btConfirmar = new JButton("Confirmar");
-        btConfirmar.addActionListener(new CadastrarLogin(login, senha));
+        btConfirmar.addActionListener(new CadastrarLogin(this));
         botoes.add(btConfirmar);
         JButton btCancelar = new JButton("Cancelar");
         btCancelar.addActionListener(new RetornaInicial(this));
         botoes.add(btCancelar);
+        JButton btLogin = new JButton("Login");
+        btLogin.addActionListener(new OptionLogin(this));
+        botoes.add(btLogin);
         return botoes;
     }
 }

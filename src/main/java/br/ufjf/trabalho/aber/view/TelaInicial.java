@@ -6,7 +6,7 @@ import br.ufjf.trabalho.aber.control.OptionLogin;
 import javax.swing.*;
 import java.awt.*;
 
-public class TelaInicial extends JFrame {
+public class TelaInicial extends JFrame implements Tela{
 
     private TelaCadastro telaCadastro;
 

@@ -1,15 +1,12 @@
 package br.ufjf.trabalho.aber.view;
 
-import br.ufjf.trabalho.aber.control.AtualizarRotas;
-import br.ufjf.trabalho.aber.control.CadastroRotas;
-import br.ufjf.trabalho.aber.control.Limpar;
-import br.ufjf.trabalho.aber.control.RemoverRota;
+import br.ufjf.trabalho.aber.control.*;
 import br.ufjf.trabalho.aber.model.Rotas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
 
-public class TelaAdministrador extends JFrame {
+public class TelaAdministrador extends JFrame implements Tela {
     private JPanel telaAdministrador;
     private JTextField origem;
     private JTextField destino;
@@ -180,6 +177,10 @@ public class TelaAdministrador extends JFrame {
         JButton btnEditar = new JButton("Atulizar");
         btnEditar.addActionListener(new AtualizarRotas(this));
         jpFormulario.add(btnEditar);
+
+        JButton btnSair = new JButton("Sair");
+        btnSair.addActionListener(new RetornaInicial(this));
+        jpFormulario.add(btnSair);
 
         telaAdministrador.add(jpFormulario, BorderLayout.CENTER);
 

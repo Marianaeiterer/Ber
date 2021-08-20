@@ -1,5 +1,6 @@
 package br.ufjf.trabalho.aber.control;
 
+import br.ufjf.trabalho.aber.view.Tela;
 import br.ufjf.trabalho.aber.view.TelaCadastro;
 import br.ufjf.trabalho.aber.view.TelaInicial;
 import br.ufjf.trabalho.aber.view.TelaLogin;
@@ -9,9 +10,9 @@ import java.awt.event.ActionListener;
 
 public class OptionLogin implements ActionListener {
 
-    TelaInicial tela;
+    Tela tela;
 
-    public OptionLogin(TelaInicial tela) {
+    public OptionLogin(Tela tela) {
         this.tela = tela;
     }
 
