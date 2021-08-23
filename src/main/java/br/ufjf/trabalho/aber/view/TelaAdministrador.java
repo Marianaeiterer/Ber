@@ -18,6 +18,12 @@ public class TelaAdministrador extends JFrame implements Tela {
     private JTextField codigo;
     private JList<Rotas> lista;
 
+    public TelaAdministrador(){
+        configuracaoAdiministrador();
+        configuracaoListaRotas();
+        configuracaoOpcaoRotas();
+        mostrarTela();
+    }
 
     public JPanel getTelaAdministrador() {
         return telaAdministrador;
@@ -189,17 +195,5 @@ public class TelaAdministrador extends JFrame implements Tela {
     public void mostrarTela() {
         this.add(telaAdministrador);
         this.setVisible(true);
-    }
-
-    public void configurarTela() {
-        configuracaoAdiministrador();
-        configuracaoListaRotas();
-        configuracaoOpcaoRotas();
-        mostrarTela();
-    }
-
-    public static void main(String[] args) {
-        TelaAdministrador tela = new TelaAdministrador();
-        tela.configurarTela();
     }
 }

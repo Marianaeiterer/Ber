@@ -1,38 +1,52 @@
 package br.ufjf.trabalho.aber.control;
 
-import br.ufjf.trabalho.aber.model.Administrador;
-import br.ufjf.trabalho.aber.model.Cliente;
-import br.ufjf.trabalho.aber.model.Piloto;
-import br.ufjf.trabalho.aber.model.Usuario;
+import br.ufjf.trabalho.aber.model.*;
 import br.ufjf.trabalho.aber.view.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginConfirmado implements ActionListener {
 
-    Tela tela;
+
+    private JTextField login;
+    private JPasswordField senha;
+    TelaLogin tela;
     Usuario usuario;
 
-    public LoginConfirmado(Tela tela) {
+    public LoginConfirmado(TelaLogin tela, JTextField login, JPasswordField senha) {
+        this.login = login;
+        this.senha = senha;
         this.tela = tela;
-
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        boolean validaLogin = Dados.validaLogin(login.getText(), senha.getText());
 
+        if (validaLogin) {
+            for (Usuario dado: Dados.logins) {
+                if(dado.getLogin().equals(tela.getLogin().getText()) && dado.getSenha().equals(tela.getSenha().getText())){
+                    this.usuario = dado;
+                    System.out.println(usuario);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Login inválido!");
+        }
 
         if(usuario instanceof Administrador){
             new TelaAdministrador();
-            tela.setVisible(false);
+            this.tela.setVisible(false);
         }else if(usuario instanceof Piloto){
             new TelaPiloto();
-            tela.setVisible(false);
+            this.tela.setVisible(false);
         }else if(usuario instanceof Cliente){
             new TelaCliente();
-            tela.setVisible(false);
+            this.tela.setVisible(false);
         }
     }
 }

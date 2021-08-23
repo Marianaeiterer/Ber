@@ -11,7 +11,7 @@ public class Dados {
         logins = new ArrayList<>();
         logins.add(new Administrador( "Mariana Lopes", "mari@gmail.com", "mariana", "mari"));
         logins.add(new Administrador( "Delio Amaro", "delio@gmail.com", "delio", "delio"));
-        logins.add(new Piloto( "Delio Amaro", "delio@gmail.com", "delio", "delio"));
+        logins.add(new Piloto( "Delio Amaro", "delio@gmail.com", "delio", "123"));
     }
 
     public static boolean validaLogin(String login, String senha){

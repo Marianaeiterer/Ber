@@ -1,6 +1,5 @@
 package br.ufjf.trabalho.aber.model;
 
-import java.util.Date;
 
 public abstract class Usuario {
 

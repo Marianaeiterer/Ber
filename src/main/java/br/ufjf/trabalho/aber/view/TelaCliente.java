@@ -1,5 +1,7 @@
 package br.ufjf.trabalho.aber.view;
 
+import br.ufjf.trabalho.aber.control.RetornaInicial;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -38,6 +40,7 @@ public class TelaCliente extends JFrame implements Tela{
         JButton btCancelarRota = new JButton("Cancelar Rota");
         botoes.add(btCancelarRota);
         JButton btSair = new JButton("Sair");
+        btSair.addActionListener(new RetornaInicial(this));
         botoes.add(btSair);
         return botoes;
     }

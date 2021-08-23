@@ -1,5 +1,7 @@
 package br.ufjf.trabalho.aber.view;
 
+import br.ufjf.trabalho.aber.control.RetornaInicial;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -7,8 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class TelaPiloto extends JFrame implements Tela {
 
@@ -37,6 +37,7 @@ public class TelaPiloto extends JFrame implements Tela {
         JButton btConfirmarRota = new JButton("Confirmar Rota");
         botoes.add(btConfirmarRota);
         JButton btSair = new JButton("Sair");
+        btSair.addActionListener(new RetornaInicial(this));
         botoes.add(btSair);
 
         return botoes;

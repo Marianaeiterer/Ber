@@ -51,5 +51,8 @@ public class Administrador extends Usuario {
         return super.verifLogin(loginDigitado, senhaDigitada);
     }
 
-
+    @Override
+    public String toString() {
+        return "Administrador";
+    }
 }

@@ -9,4 +9,9 @@ public class Piloto extends Usuario {
     public boolean verifLogin(String loginDigitado, String senhaDigitada) {
         return super.verifLogin(loginDigitado, senhaDigitada);
     }
+
+    @Override
+    public String toString() {
+        return "Piloto";
+    }
 }
