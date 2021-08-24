@@ -1,12 +1,18 @@
 package br.ufjf.trabalho.aber.view;
-
+import br.ufjf.trabalho.aber.arquivo.Arquivo;
+import br.ufjf.trabalho.aber.arquivo.JSONRotas;
+import com.google.gson.Gson;
 import br.ufjf.trabalho.aber.control.*;
 import br.ufjf.trabalho.aber.model.Rotas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
-public class TelaAdministrador extends JFrame implements Tela {
+public class TelaAdministrador extends JFrame implements Tela{
     private JPanel telaAdministrador;
     private JTextField origem;
     private JTextField destino;
@@ -17,12 +23,43 @@ public class TelaAdministrador extends JFrame implements Tela {
     private JTextField id;
     private JTextField codigo;
     private JList<Rotas> lista;
+    private int lastIndex;
+
+    public int getLastIndex() {
+        return lastIndex;
+    }
+
+    public void setLastIndex(int lastIndex) {
+        this.lastIndex = lastIndex;
+    }
 
     public TelaAdministrador(){
+
         configuracaoAdiministrador();
         configuracaoListaRotas();
         configuracaoOpcaoRotas();
         mostrarTela();
+
+
+        try {
+            String lerArquivo = Arquivo.lerArquivo("dadosRotas");
+            List<Rotas> rotas = JSONRotas.toRotas(lerArquivo);
+
+            DefaultListModel<Rotas> modelo = new DefaultListModel<>();
+
+            if(rotas != null){
+                for (Rotas rota : rotas) {
+                    modelo.addElement(rota);
+                }
+            }
+
+
+            lista.setModel(modelo);
+            this.repaint();
+
+        } catch (FileNotFoundException ex) {
+        }
+
     }
 
     public JPanel getTelaAdministrador() {
@@ -106,7 +143,7 @@ public class TelaAdministrador extends JFrame implements Tela {
     }
 
     private void configuracaoAdiministrador() {
-        this.setSize(400, 600);
+        this.setSize(700, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.telaAdministrador = new JPanel();
         this.telaAdministrador.setLayout(new BorderLayout());
@@ -117,13 +154,15 @@ public class TelaAdministrador extends JFrame implements Tela {
         JPanel jRotas = new JPanel();
         jRotas.setBorder(BorderFactory.createTitledBorder("Rotas Disponiveis"));
         jRotas.setLayout(new BorderLayout());
-        jRotas.setPreferredSize(new Dimension(200, 300));
+        jRotas.setPreferredSize(new Dimension(500, 300));
 
         DefaultListModel<Rotas> model = new DefaultListModel<>();
 
         lista = new JList<>(model);
         lista.setVisible(true);
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lista.addListSelectionListener(new Lista(this));
+        jRotas.add(new JScrollPane(lista), BorderLayout.CENTER);
 
         telaAdministrador.add(jRotas, BorderLayout.EAST);
 
@@ -196,4 +235,6 @@ public class TelaAdministrador extends JFrame implements Tela {
         this.add(telaAdministrador);
         this.setVisible(true);
     }
+
+
 }

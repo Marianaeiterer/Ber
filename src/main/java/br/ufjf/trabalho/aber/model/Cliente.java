@@ -3,7 +3,7 @@ package br.ufjf.trabalho.aber.model;
 public class Cliente extends Usuario{
 
     public Cliente(String nomeUsuario, String email, String login, String senha) {
-        super(nomeUsuario, email, login, senha);
+        super(nomeUsuario, email, login, senha, "Cliente");
     }
 
     @Override

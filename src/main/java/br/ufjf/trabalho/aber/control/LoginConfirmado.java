@@ -38,13 +38,14 @@ public class LoginConfirmado implements ActionListener {
             JOptionPane.showMessageDialog(null, "Login inválido!");
         }
 
-        if(usuario instanceof Administrador){
+
+        if(usuario.getTipoUsuario().equals("Administrador")){
             new TelaAdministrador();
             this.tela.setVisible(false);
-        }else if(usuario instanceof Piloto){
+        }else if(usuario.getTipoUsuario().equals("Piloto")){
             new TelaPiloto();
             this.tela.setVisible(false);
-        }else if(usuario instanceof Cliente){
+        }else if(usuario.getTipoUsuario().equals("Cliente")){
             new TelaCliente();
             this.tela.setVisible(false);
         }

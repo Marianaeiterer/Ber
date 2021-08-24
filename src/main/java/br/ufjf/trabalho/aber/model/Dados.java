@@ -1,5 +1,11 @@
 package br.ufjf.trabalho.aber.model;
 
+import br.ufjf.trabalho.aber.arquivo.Arquivo;
+import br.ufjf.trabalho.aber.arquivo.JSONLogins;
+import br.ufjf.trabalho.aber.arquivo.JSONRotas;
+
+import javax.swing.*;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +15,26 @@ public class Dados {
 
     static {
         logins = new ArrayList<>();
-        logins.add(new Administrador( "Mariana Lopes", "mari@gmail.com", "mariana", "mari"));
-        logins.add(new Administrador( "Delio Amaro", "delio@gmail.com", "delio", "delio"));
-        logins.add(new Piloto( "Delio Amaro", "delio@gmail.com", "delio", "123"));
+        recebeLogins();
+    }
+
+    public static void registraLogin(){
+        String toJSON = JSONLogins.toJSON(logins);
+
+        System.out.println(toJSON);
+
+        Arquivo.escreverArquivo("dadosLogins", toJSON);
+    }
+
+    public static void recebeLogins(){
+        try {
+            String lerArquivo = Arquivo.lerArquivo("dadosLogins");
+            logins = JSONLogins.toUsuarios(lerArquivo);
+
+
+        } catch (FileNotFoundException ex) {
+        }
+
     }
 
     public static boolean validaLogin(String login, String senha){

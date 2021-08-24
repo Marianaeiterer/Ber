@@ -3,7 +3,7 @@ package br.ufjf.trabalho.aber.model;
 public class Administrador extends Usuario {
 
     public Administrador(String nomeUsuario, String email, String login, String senha) {
-        super(nomeUsuario, email, login, senha);
+        super(nomeUsuario, email, login, senha, "Administrador");
     }
 
     @Override

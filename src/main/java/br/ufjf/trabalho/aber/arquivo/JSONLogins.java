@@ -1,6 +1,4 @@
 package br.ufjf.trabalho.aber.arquivo;
-
-import br.ufjf.trabalho.aber.model.Rotas;
 import br.ufjf.trabalho.aber.model.Usuario;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,13 +15,13 @@ public class JSONLogins {
         return json;
     }
 
-    public static String toJSON(List<Rotas> contatos) {
+    public static String toJSON(List<Usuario> logins) {
         Gson gson = new Gson();
-        String json = gson.toJson(contatos);
+        String json = gson.toJson(logins);
         return json;
     }
 
-    public static Usuario toContato(String conteudo) {
+    public static Usuario toUsuario(String conteudo) {
         Gson gson = new Gson();
         Usuario usuario = gson.fromJson(conteudo, Usuario.class);
 
@@ -32,7 +30,7 @@ public class JSONLogins {
 
     public static List<Usuario> toUsuarios(String conteudo) {
         Gson gson = new Gson();
-        Type pessoasTipo = new TypeToken<ArrayList<Rotas>>() {
+        Type pessoasTipo = new TypeToken<ArrayList<Usuario>>() {
         }.getType();
         List<Usuario> usuario = gson.fromJson(conteudo, pessoasTipo);
 

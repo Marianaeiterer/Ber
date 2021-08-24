@@ -1,9 +1,15 @@
 package br.ufjf.trabalho.aber.control;
 
+import br.ufjf.trabalho.aber.arquivo.Arquivo;
+import br.ufjf.trabalho.aber.arquivo.JSONRotas;
+import br.ufjf.trabalho.aber.model.Rotas;
 import br.ufjf.trabalho.aber.view.TelaAdministrador;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RemoverRota implements ActionListener {
 
@@ -15,6 +21,27 @@ public class RemoverRota implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        int selectedIndex = tela.getLista().getSelectedIndex();
+        if (selectedIndex != -1) {
+            DefaultListModel<Rotas> model = (DefaultListModel<Rotas>) tela.getLista().getModel();
+            model.removeElementAt(selectedIndex);
+            List<Rotas> rotas = new ArrayList<>();
+
+            for (int i = 0; i < model.getSize(); i++) {
+                rotas.add(model.getElementAt(i));
+            }
+
+            String toJSON = JSONRotas.toJSON(rotas);
+
+            System.out.println(toJSON);
+
+            Arquivo.escreverArquivo("dadosRotas", toJSON);
+            tela.getLista().setModel(model);
+            tela.repaint();
+        }
+
+
 
     }
 }

@@ -2,6 +2,7 @@ package br.ufjf.trabalho.aber.view;
 
 import br.ufjf.trabalho.aber.control.Cadastro;
 import br.ufjf.trabalho.aber.control.OptionLogin;
+import br.ufjf.trabalho.aber.model.Dados;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,8 @@ public class TelaInicial extends JFrame implements Tela{
         this.setSize(300, 200);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Dados.recebeLogins();
     }
 
     private JPanel painelBotoes(){

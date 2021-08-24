@@ -9,17 +9,25 @@ public class Rotas {
     private String destino;
     private String data;
     private String preco;
-    private String Hora;
+    private String hora;
     private Aviao aviao;
 
-    public Rotas(String codigo,String origem, String destino, String data, String preco, String Hora, String tipo, String id) {
+    public Rotas(String codigo,String origem, String destino, String data, String preco, String hora, String tipo, String id) {
         this.codigo = codigo;
         this.origem = origem;
         this.destino = destino;
         this.data = data;
         this.preco = preco;
-        this.Hora = Hora;
+        this.hora = hora;
         this.aviao = new Aviao(tipo, id);
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getOrigem() {
@@ -36,10 +44,6 @@ public class Rotas {
 
     public void setDestino(String destino) {
         this.destino = destino;
-    }
-
-    public String getCodigo() {
-        return codigo;
     }
 
     public String getData() {
@@ -59,31 +63,25 @@ public class Rotas {
     }
 
     public String getHora() {
-        return Hora;
+        return hora;
     }
 
     public void setHora(String hora) {
-        Hora = hora;
+        this.hora = hora;
     }
 
     public Aviao getAviao() {
         return aviao;
     }
 
-    public void setAviao(Aviao aviao) {
-        this.aviao = aviao;
+    public void setAviao(String tipo, String id) {
+        this.aviao.setTipo(tipo);
+        this.aviao.setId(id);
     }
 
     @Override
     public String toString() {
-        return "Rotas{" +
-                "codigo='" + codigo + '\'' +
-                ", origem='" + origem + '\'' +
-                ", destino='" + destino + '\'' +
-                ", data='" + data + '\'' +
-                ", preco='" + preco + '\'' +
-                ", Hora='" + Hora + '\'' +
-                 aviao +
-                '}';
+        return this.origem + " para " + this.destino +
+                " - Dia: " + this.data + " Horario: " + this.hora + " Preco: " + this.preco;
     }
 }

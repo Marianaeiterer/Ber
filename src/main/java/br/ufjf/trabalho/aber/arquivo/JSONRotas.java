@@ -16,13 +16,13 @@ public class JSONRotas {
         return json;
     }
 
-    public static String toJSON(List<Rotas> contatos) {
+    public static String toJSON(List<Rotas> rotas) {
         Gson gson = new Gson();
-        String json = gson.toJson(contatos);
+        String json = gson.toJson(rotas);
         return json;
     }
 
-    public static Rotas toContato(String conteudo) {
+    public static Rotas toRota(String conteudo) {
         Gson gson = new Gson();
        Rotas rota = gson.fromJson(conteudo, Rotas.class);
 

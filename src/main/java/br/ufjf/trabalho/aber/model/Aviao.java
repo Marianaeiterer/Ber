@@ -17,6 +17,9 @@ public class Aviao {
         this.tanque = "Cheio";
     }
 
+    public String getTipo() {
+        return tipo;
+    }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
