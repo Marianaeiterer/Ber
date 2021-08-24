@@ -11,11 +11,17 @@ import java.util.List;
 
 public class Dados {
 
-    public static List<Usuario> logins;
+    public static List<Usuario> logins = new ArrayList<>();
 
     static {
-        logins = new ArrayList<>();
         recebeLogins();
+        if(logins.size() == 0){
+            logins.add(new Administrador( "Mariana Lopes", "mari@gmail.com", "mariana", "mari"));
+            logins.add(new Administrador( "Delio Amaro", "delio@gmail.com", "delio", "delio"));
+            logins.add(new Piloto( "Delio Amaro", "delio@gmail.com", "delio", "123"));
+            registraLogin();
+        }
+
     }
 
     public static void registraLogin(){

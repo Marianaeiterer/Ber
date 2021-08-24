@@ -32,22 +32,22 @@ public class LoginConfirmado implements ActionListener {
                 if(dado.getLogin().equals(tela.getLogin().getText()) && dado.getSenha().equals(tela.getSenha().getText())){
                     this.usuario = dado;
                     System.out.println(usuario);
+
+                    if(usuario.getTipoUsuario().equals("Administrador")){
+                        new TelaAdministrador();
+                        this.tela.setVisible(false);
+                    }else if(usuario.getTipoUsuario().equals("Piloto")){
+                        new TelaPiloto();
+                        this.tela.setVisible(false);
+                    }else if(usuario.getTipoUsuario().equals("Cliente")){
+                        new TelaCliente();
+                        this.tela.setVisible(false);
+                    }
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Login inválido!");
         }
 
-
-        if(usuario.getTipoUsuario().equals("Administrador")){
-            new TelaAdministrador();
-            this.tela.setVisible(false);
-        }else if(usuario.getTipoUsuario().equals("Piloto")){
-            new TelaPiloto();
-            this.tela.setVisible(false);
-        }else if(usuario.getTipoUsuario().equals("Cliente")){
-            new TelaCliente();
-            this.tela.setVisible(false);
-        }
     }
 }
