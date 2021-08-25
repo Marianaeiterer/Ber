@@ -16,17 +16,27 @@ public class TelaCliente extends JFrame implements Tela{
 
     private JList<Rotas> lista;
 
+    public JList<Rotas> getLista() {
+        return lista;
+    }
+
+    public void setLista(JList<Rotas> lista) {
+        this.lista = lista;
+    }
+
     public TelaCliente(){
 
         this.setLayout(new BorderLayout());
-        this.add(painelRotas(), BorderLayout.CENTER);
+        this.add(painelRotasCompradas(), BorderLayout.EAST);
+        this.add(painelRotas(), BorderLayout.WEST);
         this.add(painelBotoes(), BorderLayout.SOUTH);
-        this.setSize(500, 400);
+
+        this.setSize(700, 400);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         try {
-            String lerArquivo = Arquivo.lerArquivo("dadosRotas");
+            String lerArquivo = Arquivo.lerArquivo("rotasConfirmadas");
             List<Rotas> rotas = JSONRotas.toRotas(lerArquivo);
 
             DefaultListModel<Rotas> modelo = new DefaultListModel<>();
@@ -52,7 +62,7 @@ public class TelaCliente extends JFrame implements Tela{
         JPanel rotas = new JPanel();
         rotas.setBorder(BorderFactory.createTitledBorder("Rotas Disponiveis"));
         rotas.setLayout(new BorderLayout());
-        rotas.setPreferredSize(new Dimension(200, 300));
+        rotas.setPreferredSize(new Dimension(400, 300));
         DefaultListModel<Rotas> model = new DefaultListModel<>();
 
         lista = new JList<>(model);
@@ -61,6 +71,24 @@ public class TelaCliente extends JFrame implements Tela{
         //lista.addListSelectionListener(new Lista(this));
 
         rotas.add(new JScrollPane(lista), BorderLayout.CENTER);
+        return rotas;
+
+    }
+
+    private JPanel painelRotasCompradas(){
+
+        JPanel rotas = new JPanel();
+        rotas.setBorder(BorderFactory.createTitledBorder("Rotas Compradas"));
+        rotas.setLayout(new BorderLayout());
+        rotas.setPreferredSize(new Dimension(300, 300));
+        DefaultListModel<Rotas> model = new DefaultListModel<>();
+
+        lista = new JList<>(model);
+        lista.setVisible(true);
+        lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //lista.addListSelectionListener(new Lista(this));
+
+        rotas.add(new JScrollPane(lista), BorderLayout.EAST);
         return rotas;
 
     }
