@@ -40,7 +40,7 @@ public class LoginConfirmado implements ActionListener {
                         new TelaPiloto();
                         this.tela.setVisible(false);
                     }else if(usuario.getTipoUsuario().equals("Cliente")){
-                        new TelaCliente();
+                        new TelaCliente(usuario);
                         this.tela.setVisible(false);
                     }
                 }

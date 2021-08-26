@@ -81,7 +81,7 @@ public class Rotas {
 
     @Override
     public String toString() {
-        return this.origem + " para " + this.destino +
+        return this.codigo + " - "+ this.origem + " para " + this.destino +
                 " - Dia: " + this.data + " Horario: " + this.hora + " Preco: " + this.preco;
     }
 }

@@ -20,7 +20,7 @@ public class ConfirmaRota implements ActionListener {
 
     public ConfirmaRota(TelaPiloto tela, Rotas elementSelecionado) {
         this.tela = tela;
-        this.elementSelecionado =  elementSelecionado;
+        this.elementSelecionado = elementSelecionado;
     }
 
     @Override
@@ -29,10 +29,21 @@ public class ConfirmaRota implements ActionListener {
         int indice = tela.getLista().getSelectedIndex();
 
 
-        for (int i = 0; i< rotas.size();i++){
+        List<Rotas> model = new ArrayList<>();
+
+        for (int i = 0; i < rotas.size();i++){
+            model.add(rotas.get(i));
            if(indice == i){
                this.elementSelecionado = rotas.getElementAt(i);
                rotas.remove(i);
+               model.remove(i);
+
+               String toJSON = JSONRotas.toJSON(model);
+
+               System.out.println(toJSON);
+
+               Arquivo.escreverArquivo("dadosRotas", toJSON);
+
            }
         }
 
@@ -47,12 +58,6 @@ public class ConfirmaRota implements ActionListener {
             }else{
                 rotasArquivo = JSONRotas.toRotas(lerArquivo);
                 rotasArquivo.add(this.elementSelecionado);
-            }
-
-
-
-            for (int i = 0; i< rotas.size();i++){
-                System.out.println(rotasArquivo.get(i));
             }
 
 

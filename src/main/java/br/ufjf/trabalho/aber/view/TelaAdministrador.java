@@ -152,7 +152,7 @@ public class TelaAdministrador extends JFrame implements Tela{
 
     private void configuracaoListaRotas() {
         JPanel jRotas = new JPanel();
-        jRotas.setBorder(BorderFactory.createTitledBorder("Rotas Disponiveis"));
+        jRotas.setBorder(BorderFactory.createTitledBorder("Rotas Cadastradas Sem Confirmacao"));
         jRotas.setLayout(new BorderLayout());
         jRotas.setPreferredSize(new Dimension(500, 300));
 
