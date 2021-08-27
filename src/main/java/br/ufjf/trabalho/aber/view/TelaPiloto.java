@@ -100,8 +100,4 @@ public class TelaPiloto extends JFrame implements Tela, ListSelectionListener {
         return botoes;
     }
 
-    public static void main(String[] args){
-        TelaPiloto telaPiloto = new TelaPiloto();
-    }
-
 }
