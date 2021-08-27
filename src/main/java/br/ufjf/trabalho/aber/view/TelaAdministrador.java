@@ -60,13 +60,6 @@ public class TelaAdministrador extends JFrame implements Tela{
 
     }
 
-    public JPanel getTelaAdministrador() {
-        return telaAdministrador;
-    }
-
-    public void setTelaAdministrador(JPanel telaAdministrador) {
-        this.telaAdministrador = telaAdministrador;
-    }
 
     public JTextField getOrigem() {
         return origem;
@@ -173,36 +166,36 @@ public class TelaAdministrador extends JFrame implements Tela{
         jpFormulario.setBorder(BorderFactory.createTitledBorder("Rotas"));
 
         jpFormulario.add(new JLabel("Codigo Viagem:"));
-        codigo = new JTextField(size);
-        jpFormulario.add(codigo);
+        this.codigo = new JTextField(size);
+        jpFormulario.add(this.codigo);
 
         jpFormulario.add(new JLabel("Origem:"));
-        origem = new JTextField(size);
-        jpFormulario.add(origem);
+        this.origem = new JTextField(size);
+        jpFormulario.add(this.origem);
 
         jpFormulario.add(new JLabel("Destino:"));
-        destino = new JTextField(size);
-        jpFormulario.add(destino);
+        this.destino = new JTextField(size);
+        jpFormulario.add(this.destino);
 
         jpFormulario.add(new JLabel("Data:"));
-        data = new JTextField(size);
-        jpFormulario.add(data);
+        this.data = new JTextField(size);
+        jpFormulario.add(this.data);
 
         jpFormulario.add(new JLabel("Hora:"));
-        hora = new JTextField(size);
-        jpFormulario.add(hora);
+        this.hora = new JTextField(size);
+        jpFormulario.add(this.hora);
 
         jpFormulario.add(new JLabel("Preço:"));
-        preco = new JTextField(size);
-        jpFormulario.add(preco);
+        this.preco = new JTextField(size);
+        jpFormulario.add(this.preco);
 
         jpFormulario.add(new JLabel("Tipo do Aviao:"));
-        aviao = new JTextField(size);
-        jpFormulario.add(aviao);
+        this.aviao = new JTextField(size);
+        jpFormulario.add(this.aviao);
 
         jpFormulario.add(new JLabel("Id Aviao:"));
-        id = new JTextField(size);
-        jpFormulario.add(id);
+        this.id = new JTextField(size);
+        jpFormulario.add(this.id);
 
         JButton btnAdicionar = new JButton("Adicionar");
         btnAdicionar.addActionListener(new CadastroRotas(this));

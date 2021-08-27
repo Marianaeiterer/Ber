@@ -28,6 +28,7 @@ public class AtualizarRotas implements ActionListener {
 
         ListModel<Rotas> model = this.tela.getLista().getModel();
         Rotas rota = model.getElementAt(tela.getLastIndex());
+
         rota.setCodigo(tela.getCodigo().getText());
         rota.setOrigem(tela.getOrigem().getText());
         rota.setDestino(tela.getDestino().getText());

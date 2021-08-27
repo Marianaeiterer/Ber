@@ -27,6 +27,7 @@ public class Lista implements ListSelectionListener {
             Rotas elementAt = tela.getLista().getModel().getElementAt(firstIndex);
             tela.getCodigo().setText(elementAt.getCodigo());
             tela.getOrigem().setText(elementAt.getOrigem());
+            tela.getDestino().setText(elementAt.getDestino());
             tela.getData().setText(elementAt.getData());
             tela.getHora().setText(elementAt.getHora());
             tela.getPreco().setText(elementAt.getPreco());
