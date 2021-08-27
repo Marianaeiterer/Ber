@@ -31,7 +31,6 @@ public class LoginConfirmado implements ActionListener {
             for (Usuario dado: Dados.logins) {
                 if(dado.getLogin().equals(tela.getLogin().getText()) && dado.getSenha().equals(tela.getSenha().getText())){
                     this.usuario = dado;
-                    System.out.println(usuario);
 
                     if(usuario.getTipoUsuario().equals("Administrador")){
                         new TelaAdministrador();

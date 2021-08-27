@@ -1,14 +1,11 @@
 package br.ufjf.trabalho.aber.view;
 import br.ufjf.trabalho.aber.arquivo.Arquivo;
 import br.ufjf.trabalho.aber.arquivo.JSONRotas;
-import com.google.gson.Gson;
 import br.ufjf.trabalho.aber.control.*;
 import br.ufjf.trabalho.aber.model.Rotas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
@@ -58,6 +55,7 @@ public class TelaAdministrador extends JFrame implements Tela{
             this.repaint();
 
         } catch (FileNotFoundException ex) {
+            System.out.println("Pasta nao encontrada!");
         }
 
     }

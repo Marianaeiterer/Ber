@@ -35,9 +35,6 @@ public class CadastroRotas implements ActionListener {
                 tela.getAviao().getText(),
                 tela.getId().getText()));
 
-        for (int i = 0; i< rotas.size();i++){
-            System.out.println(rotas.get(i));
-        }
 
         ListModel<Rotas> model = tela.getLista().getModel();
         List<Rotas> rota = new ArrayList<>();
@@ -53,6 +50,7 @@ public class CadastroRotas implements ActionListener {
 
         Arquivo.escreverArquivo("dadosRotas", toJSON);
 
+        JOptionPane.showMessageDialog(null, "Rota adicionada com sucesso!");
         tela.getLista().setModel(rotas);
         tela.repaint();
     }

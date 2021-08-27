@@ -1,12 +1,11 @@
 package br.ufjf.trabalho.aber.view;
 
 import br.ufjf.trabalho.aber.control.CadastrarLogin;
-import br.ufjf.trabalho.aber.control.OptionLogin;
+import br.ufjf.trabalho.aber.control.OpcaoLogin;
 import br.ufjf.trabalho.aber.control.RetornaInicial;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class TelaCadastro extends JFrame implements Tela{
 
@@ -14,7 +13,6 @@ public class TelaCadastro extends JFrame implements Tela{
     JTextField email;
     JTextField login;
     JPasswordField senha;
-    JPasswordField confirSenha;
 
     public TelaCadastro(){
 
@@ -22,7 +20,6 @@ public class TelaCadastro extends JFrame implements Tela{
         this.email = new JTextField(50);
         this.login = new JTextField(50);
         this.senha = new JPasswordField(50);
-        this.confirSenha = new JPasswordField(50);
         this.setLayout(new BorderLayout());
         this.add(painelCaixaTexto(), BorderLayout.CENTER);
         this.add(painelBotoes(), BorderLayout.SOUTH);
@@ -63,13 +60,6 @@ public class TelaCadastro extends JFrame implements Tela{
         this.senha = senha;
     }
 
-    public JPasswordField getConfirSenha() {
-        return confirSenha;
-    }
-
-    public void setConfirSenha(JPasswordField confirSenha) {
-        this.confirSenha = confirSenha;
-    }
 
     private JPanel painelCaixaTexto(){
 
@@ -83,8 +73,6 @@ public class TelaCadastro extends JFrame implements Tela{
         caixaTexto.add(this.login);
         caixaTexto.add(new JLabel("Senha:"));
         caixaTexto.add(this.senha);
-        caixaTexto.add(new JLabel("Confirmar senha:"));
-        caixaTexto.add(this.confirSenha);
         return caixaTexto;
     }
 
@@ -99,7 +87,7 @@ public class TelaCadastro extends JFrame implements Tela{
         btCancelar.addActionListener(new RetornaInicial(this));
         botoes.add(btCancelar);
         JButton btLogin = new JButton("Login");
-        btLogin.addActionListener(new OptionLogin(this));
+        btLogin.addActionListener(new OpcaoLogin(this));
         botoes.add(btLogin);
         return botoes;
     }

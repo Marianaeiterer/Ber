@@ -22,26 +22,32 @@ public class RemoverRota implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        int selectedIndex = tela.getLista().getSelectedIndex();
-        if (selectedIndex != -1) {
-            DefaultListModel<Rotas> model = (DefaultListModel<Rotas>) tela.getLista().getModel();
-            model.removeElementAt(selectedIndex);
-            List<Rotas> rotas = new ArrayList<>();
+        DefaultListModel<Rotas> model = (DefaultListModel<Rotas>) tela.getLista().getModel();
 
-            for (int i = 0; i < model.getSize(); i++) {
-                rotas.add(model.getElementAt(i));
+        if(model.size() == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma rota para ser removida!");
+        }else {
+            int selectedIndex = tela.getLista().getSelectedIndex();
+            if (selectedIndex != -1) {
+
+                model.removeElementAt(selectedIndex);
+                List<Rotas> rotas = new ArrayList<>();
+
+                for (int i = 0; i < model.getSize(); i++) {
+                    rotas.add(model.getElementAt(i));
+                }
+
+                String toJSON = JSONRotas.toJSON(rotas);
+
+                System.out.println(toJSON);
+
+                Arquivo.escreverArquivo("dadosRotas", toJSON);
+
+
+                tela.getLista().setModel(model);
+                tela.repaint();
+                JOptionPane.showMessageDialog(null, "Rota removida com sucesso!");
             }
-
-            String toJSON = JSONRotas.toJSON(rotas);
-
-            System.out.println(toJSON);
-
-            Arquivo.escreverArquivo("dadosRotas", toJSON);
-            tela.getLista().setModel(model);
-            tela.repaint();
         }
-
-
-
     }
 }

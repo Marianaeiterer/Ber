@@ -1,7 +1,7 @@
 package br.ufjf.trabalho.aber.view;
 
 import br.ufjf.trabalho.aber.control.Cadastro;
-import br.ufjf.trabalho.aber.control.OptionLogin;
+import br.ufjf.trabalho.aber.control.OpcaoLogin;
 import br.ufjf.trabalho.aber.model.Dados;
 
 import javax.swing.*;
@@ -27,7 +27,7 @@ public class TelaInicial extends JFrame implements Tela{
         JPanel botoes = new JPanel();
         botoes.setLayout(new GridLayout(0, 2));
         JButton btLogin = new JButton("Login");
-        btLogin.addActionListener(new OptionLogin(this));
+        btLogin.addActionListener(new OpcaoLogin(this));
         botoes.add(btLogin);
         JButton btCadastro = new JButton("Cadastro");
         btCadastro.addActionListener(new Cadastro(this));

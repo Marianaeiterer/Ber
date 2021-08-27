@@ -8,11 +8,11 @@ import br.ufjf.trabalho.aber.view.TelaLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class OptionLogin implements ActionListener {
+public class OpcaoLogin implements ActionListener {
 
     Tela tela;
 
-    public OptionLogin(Tela tela) {
+    public OpcaoLogin(Tela tela) {
         this.tela = tela;
     }
 

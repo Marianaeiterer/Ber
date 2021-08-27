@@ -26,54 +26,65 @@ public class ConfirmaRota implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         DefaultListModel<Rotas> rotas = (DefaultListModel<Rotas>) tela.getLista().getModel();
-        int indice = tela.getLista().getSelectedIndex();
 
+        if(rotas.size() == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma rota disponivel para confirmacao!");
+        }else{
+            int indice = tela.getLista().getSelectedIndex();
 
-        List<Rotas> model = new ArrayList<>();
+            List<Rotas> model = new ArrayList<>();
 
-        for (int i = 0; i < rotas.size();i++){
-            model.add(rotas.get(i));
-           if(indice == i){
-               this.elementSelecionado = rotas.getElementAt(i);
-               rotas.remove(i);
-               model.remove(i);
+            for (int i = 0; i < rotas.size();i++){
+                model.add(rotas.get(i));
+                if(indice == i){
+                    this.elementSelecionado = rotas.getElementAt(i);
+                    rotas.remove(i);
+                    model.remove(i);
 
-               String toJSON = JSONRotas.toJSON(model);
+                    String toJSON = JSONRotas.toJSON(model);
 
-               System.out.println(toJSON);
+                    System.out.println(toJSON);
 
-               Arquivo.escreverArquivo("dadosRotas", toJSON);
+                    Arquivo.escreverArquivo("dadosRotas", toJSON);
 
-           }
-        }
-
-        this.elementSelecionado.getAviao().encherTanque();
-
-        try {
-            String lerArquivo = Arquivo.lerArquivo("rotasConfirmadas");
-            List<Rotas> rotasArquivo = new ArrayList<>();
-
-            if(lerArquivo.equals("")){
-                rotasArquivo.add(this.elementSelecionado);
-            }else{
-                rotasArquivo = JSONRotas.toRotas(lerArquivo);
-                rotasArquivo.add(this.elementSelecionado);
+                }
             }
 
+            this.elementSelecionado.getAviao().encherTanque();
 
-            String toJSON = JSONRotas.toJSON(rotasArquivo);
+            try {
+                String lerArquivo = Arquivo.lerArquivo("rotasConfirmadas");
+                List<Rotas> rotasArquivo = new ArrayList<>();
 
-            System.out.println(toJSON);
+                if(lerArquivo.equals("")){
+                    rotasArquivo.add(this.elementSelecionado);
+                }else{
+                    rotasArquivo = JSONRotas.toRotas(lerArquivo);
+                    rotasArquivo.add(this.elementSelecionado);
+                }
 
-            Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
+                String toJSON = JSONRotas.toJSON(rotasArquivo);
 
+                System.out.println(toJSON);
 
-        } catch (FileNotFoundException ex) {
+                Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
 
+            } catch (FileNotFoundException ex) {
+
+                List<Rotas> rotasArquivo = new ArrayList<>();
+                rotasArquivo.add(this.elementSelecionado);
+                String toJSON = JSONRotas.toJSON(rotasArquivo);
+
+                System.out.println(toJSON);
+
+                Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
+            }
+
+            JOptionPane.showMessageDialog(null, "Rota confirmada com sucesso!");
+            tela.getLista().setModel(rotas);
+            tela.repaint();
         }
 
-        tela.getLista().setModel(rotas);
-        tela.repaint();
     }
 
 }

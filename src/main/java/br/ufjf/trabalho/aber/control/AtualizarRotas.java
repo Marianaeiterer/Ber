@@ -24,6 +24,8 @@ public class AtualizarRotas implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
         ListModel<Rotas> model = this.tela.getLista().getModel();
         Rotas rota = model.getElementAt(tela.getLastIndex());
         rota.setCodigo(tela.getCodigo().getText());
@@ -48,5 +50,7 @@ public class AtualizarRotas implements ActionListener {
         tela.getLista().setModel(model);
 
         tela.repaint();
+
+        JOptionPane.showMessageDialog(null, "Rota atualizada com sucesso!");
     }
 }

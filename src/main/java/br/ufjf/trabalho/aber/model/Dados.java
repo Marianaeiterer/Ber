@@ -17,8 +17,9 @@ public class Dados {
         recebeLogins();
         if(logins.size() == 0){
             logins.add(new Administrador( "Mariana Lopes", "mari@gmail.com", "mariana", "mari"));
-            logins.add(new Administrador( "Delio Amaro", "delio@gmail.com", "delio", "delio"));
-            logins.add(new Piloto( "Delio Amaro", "delio@gmail.com", "delio", "123"));
+            logins.add(new Administrador( "Delio Amaro", "delio@gmail.com", "delio", "amaro"));
+            logins.add(new Administrador( "Joao Victor", "joao@gmail.com", "joao", "victor"));
+            logins.add(new Piloto( "Lucas Jose", "lucas@gmail.com", "lucas", "jose"));
             registraLogin();
         }
 
@@ -39,6 +40,7 @@ public class Dados {
 
 
         } catch (FileNotFoundException ex) {
+            System.out.println("Pasta nao encontrada!");
         }
 
     }

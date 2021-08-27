@@ -1,5 +1,4 @@
 package br.ufjf.trabalho.aber.control;
-
 import br.ufjf.trabalho.aber.arquivo.Arquivo;
 import br.ufjf.trabalho.aber.arquivo.JSONRotas;
 import br.ufjf.trabalho.aber.model.Rotas;
@@ -31,70 +30,78 @@ public class CancelarRota implements ActionListener {
         DefaultListModel<Rotas> rotas = (DefaultListModel<Rotas>) tela.getLista().getModel();
         DefaultListModel<Rotas> rotasCompradas = (DefaultListModel<Rotas>) tela.getListaCompradas().getModel();
 
-        int indice = tela.getListaCompradas().getSelectedIndex();
-        String nomePasta = "ticketComprado" + usuario.getLogin();
 
-        List<Rotas> compradas = new ArrayList<>();
-
-        for (int i = 0; i < rotasCompradas.size();i++){
-            compradas.add(rotasCompradas.get(i));
-            if(indice == i){
-                this.elementSelecionado = rotasCompradas.getElementAt(i);
-
-                rotasCompradas.remove(i);
-                compradas.remove(i);
-
-                String toJSON = JSONRotas.toJSON(compradas);
-
-                System.out.println(toJSON);
-
-                Arquivo.escreverArquivo(nomePasta, toJSON);
-
-            }
-        }
-
-
-        if(rotas == null){
-            System.out.println("dentro null");
-            List<Rotas> rotasArquivo = new ArrayList<>();
-            rotasArquivo.add(this.elementSelecionado);
-            rotas.addElement(this.elementSelecionado);
-
-            String toJSON = JSONRotas.toJSON(rotasArquivo);
-
-            System.out.println(toJSON);
-
-            Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
+        if(rotasCompradas.size() == 0){
+            JOptionPane.showMessageDialog(null, "Desculpe! Todas as rotas ja foram canceladas!");
         }else{
-            System.out.println("dentro else");
-            try {
-                String lerArquivo = Arquivo.lerArquivo("rotasConfirmadas");
-                List<Rotas> rotasArquivo = new ArrayList<>();
 
-                if (!lerArquivo.equals("")) {
-                    rotasArquivo = JSONRotas.toRotas(lerArquivo);
+            int indice = tela.getListaCompradas().getSelectedIndex();
+            String nomePasta = "ticketComprado" + usuario.getLogin();
+
+            List<Rotas> compradas = new ArrayList<>();
+
+            for (int i = 0; i < rotasCompradas.size();i++){
+                compradas.add(rotasCompradas.get(i));
+                if(indice == i){
+                    this.elementSelecionado = rotasCompradas.getElementAt(i);
+
+                    rotasCompradas.remove(i);
+                    compradas.remove(i);
+
+                    String toJSON = JSONRotas.toJSON(compradas);
+
+                    System.out.println(toJSON);
+
+                    Arquivo.escreverArquivo(nomePasta, toJSON);
+
                 }
+            }
 
+
+            if(rotas == null){
+                List<Rotas> rotasArquivo = new ArrayList<>();
                 rotasArquivo.add(this.elementSelecionado);
-
                 rotas.addElement(this.elementSelecionado);
-
 
                 String toJSON = JSONRotas.toJSON(rotasArquivo);
 
                 System.out.println(toJSON);
 
                 Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
+            }else{
+                try {
+                    String lerArquivo = Arquivo.lerArquivo("rotasConfirmadas");
+                    List<Rotas> rotasArquivo = new ArrayList<>();
+
+                    if (!lerArquivo.equals("")) {
+                        rotasArquivo = JSONRotas.toRotas(lerArquivo);
+                    }
+
+                    rotasArquivo.add(this.elementSelecionado);
+
+                    rotas.addElement(this.elementSelecionado);
 
 
-            } catch (FileNotFoundException ex) {
-                System.out.println("File Not Found Exception");
+                    String toJSON = JSONRotas.toJSON(rotasArquivo);
+
+                    System.out.println(toJSON);
+
+                    Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
+
+
+                } catch (FileNotFoundException ex) {
+                    System.out.println("Pasta nao encontrada!");
+                }
             }
+
+            JOptionPane.showMessageDialog(null, "Rota cancelada com sucesso!");
+            tela.getLista().setModel(rotas);
+            tela.getListaCompradas().setModel(rotasCompradas);
+            tela.repaint();
+
         }
 
-        tela.getLista().setModel(rotas);
-        tela.getListaCompradas().setModel(rotasCompradas);
-        tela.repaint();
+
     }
 
 

@@ -70,7 +70,7 @@ public class TelaCliente extends JFrame implements Tela, ListSelectionListener {
             this.repaint();
 
         } catch (FileNotFoundException ex) {
-
+            System.out.println("Pasta nao encontrada!");
         }
 
         try {
@@ -134,7 +134,7 @@ public class TelaCliente extends JFrame implements Tela, ListSelectionListener {
 
     private JPanel painelBotoes(){
         JPanel botoes = new JPanel();
-        botoes.setLayout(new GridLayout(0, 2));
+        botoes.setLayout(new GridLayout(0, 3));
         JButton btConfirmarRota = new JButton("Comprar Rota");
         botoes.add(btConfirmarRota);
         btConfirmarRota.addActionListener(new ComprarRota(this, this.usuario, this.elementSelecionado));

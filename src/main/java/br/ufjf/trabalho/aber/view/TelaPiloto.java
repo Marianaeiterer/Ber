@@ -55,8 +55,9 @@ public class TelaPiloto extends JFrame implements Tela, ListSelectionListener {
             this.repaint();
 
         } catch (FileNotFoundException ex) {
-
+            System.out.println("Pasta nao encontrada!");
         }
+
     }
 
     private JPanel painelRotas(){

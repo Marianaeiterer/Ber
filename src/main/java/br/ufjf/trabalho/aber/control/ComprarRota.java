@@ -31,71 +31,75 @@ public class ComprarRota implements ActionListener {
         DefaultListModel<Rotas> rotas = (DefaultListModel<Rotas>) tela.getLista().getModel();
         DefaultListModel<Rotas> rotasCompradas = (DefaultListModel<Rotas>) tela.getListaCompradas().getModel();
 
-        int indice = tela.getLista().getSelectedIndex();
-
-
-        List<Rotas> disponiveis = new ArrayList<>();
-
-        for (int i = 0; i < rotas.size();i++){
-            disponiveis.add(rotas.get(i));
-            if(indice == i){
-                this.elementSelecionado = rotas.getElementAt(i);
-
-                rotas.remove(i);
-                disponiveis.remove(i);
-
-                String toJSON = JSONRotas.toJSON(disponiveis);
-
-                System.out.println(toJSON);
-
-                Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
-
-            }
-        }
-        String nomePasta = "ticketComprado" + usuario.getLogin();
-
-        if(rotasCompradas == null){
-            System.out.println("dentro null");
-            List<Rotas> rotasArquivo = new ArrayList<>();
-            rotasArquivo.add(this.elementSelecionado);
-            rotasCompradas.addElement(this.elementSelecionado);
-
-            String toJSON = JSONRotas.toJSON(rotasArquivo);
-
-            System.out.println(toJSON);
-
-            Arquivo.escreverArquivo(nomePasta, toJSON);
+        if(rotas.size() == 0){
+            JOptionPane.showMessageDialog(null, "Desculpe! Nenhuma rota disponivel para compra!");
         }else{
-            System.out.println("dentro else");
-            try {
-                String lerArquivo = Arquivo.lerArquivo(nomePasta);
-                List<Rotas> rotasArquivo = new ArrayList<>();
+            int indice = tela.getLista().getSelectedIndex();
+            List<Rotas> disponiveis = new ArrayList<>();
 
-                if (!lerArquivo.equals("")) {
-                    rotasArquivo = JSONRotas.toRotas(lerArquivo);
+            for (int i = 0; i < rotas.size();i++){
+                disponiveis.add(rotas.get(i));
+                if(indice == i){
+                    this.elementSelecionado = rotas.getElementAt(i);
+
+                    rotas.remove(i);
+                    disponiveis.remove(i);
+
+                    String toJSON = JSONRotas.toJSON(disponiveis);
+
+                    System.out.println(toJSON);
+
+                    Arquivo.escreverArquivo("rotasConfirmadas", toJSON);
+
                 }
+            }
+            String nomePasta = "ticketComprado" + usuario.getLogin();
 
+            if(rotasCompradas.size() == 0){
+                List<Rotas> rotasArquivo = new ArrayList<>();
                 rotasArquivo.add(this.elementSelecionado);
-
                 rotasCompradas.addElement(this.elementSelecionado);
-
 
                 String toJSON = JSONRotas.toJSON(rotasArquivo);
 
                 System.out.println(toJSON);
 
                 Arquivo.escreverArquivo(nomePasta, toJSON);
+            }else{
+                try {
+                    String lerArquivo = Arquivo.lerArquivo(nomePasta);
+                    List<Rotas> rotasArquivo = new ArrayList<>();
+
+                    if (!lerArquivo.equals("")) {
+                        rotasArquivo = JSONRotas.toRotas(lerArquivo);
+                    }
+
+                    rotasArquivo.add(this.elementSelecionado);
+
+                    rotasCompradas.addElement(this.elementSelecionado);
 
 
-            } catch (FileNotFoundException ex) {
-                System.out.println("File Not Found Exception");
+                    String toJSON = JSONRotas.toJSON(rotasArquivo);
+
+                    System.out.println(toJSON);
+
+                    Arquivo.escreverArquivo(nomePasta, toJSON);
+
+
+                } catch (FileNotFoundException ex) {
+                    System.out.println("Pasta nao encontrada!");
+                }
             }
+
+
+            tela.getLista().setModel(rotas);
+            tela.getListaCompradas().setModel(rotasCompradas);
+            tela.repaint();
+
+            JOptionPane.showMessageDialog(null, "Rota comprada com sucesso!");
         }
 
 
-        tela.getLista().setModel(rotas);
-        tela.getListaCompradas().setModel(rotasCompradas);
-        tela.repaint();
     }
 
 
